@@ -156,12 +156,12 @@ class daily_stock_report(osv.osv_memory):
                     cr.execute("SELECT SUM(h.quantity) FROM stock_history h, stock_move m WHERE h.move_id=m.id AND h.product_id=%s AND h.location_id=%s AND m.date_expected <= %s GROUP BY h.product_id",
                            (product.id, each_location.id, this.report_date + ' 23:59:59'))
                 res = cr.fetchone()
-                closing_stock_temp = res and res[0] or 0.0
-                closing_stock_temp = closing_stock_temp * factor
+                closing_stock_res = res and res[0] or 0.0
+                closing_stock_temp = closing_stock_res * factor
                 closing_stock = round(closing_stock_temp, account_prec)
 
                 if this.show_valuation:
-                    product_costing_temp = closing_stock * product.standard_price
+                    product_costing_temp = closing_stock_res * product.standard_price
                     product_costing = round(product_costing_temp, price_prec)
                     
                 location_dic={
