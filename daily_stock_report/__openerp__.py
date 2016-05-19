@@ -41,6 +41,6 @@ Future improvements:
         'security/ir.model.access.csv',
         'wizard/daily_stock_report_view.xml',
     ],
-    'price': 30.00, 
+    'price': 0.00, 
     'currency': 'EUR',
 }

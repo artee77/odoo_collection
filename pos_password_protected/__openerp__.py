@@ -36,6 +36,6 @@ Featues:
     ],
     # only loaded in demonstration mode
     'qweb': ['static/src/xml/pos_custom.xml'],
-    'price': 50.00,
+    'price': 0.00,
     'currency': 'EUR',
 }
