@@ -10,5 +10,7 @@ class pos_config(osv.osv):
         'password_price': fields.char('Password'),
         'is_password_discount': fields.boolean('Discount'),
         'password_discount': fields.char('Password'),
+        'is_password_backspace': fields.boolean('Backspace'),
+        'password_backspace': fields.char('Password'),
     }
 pos_config()

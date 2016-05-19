@@ -112,7 +112,7 @@ class daily_stock_report(osv.osv_memory):
                 
                 ### Opening Stock
                 if this.show_opening:
-                    cr.execute("SELECT SUM(h.quantity) FROM stock_history h, stock_move m WHERE h.move_id=m.id AND h.product_id=%s AND h.location_id=%s AND m.date_expected < %s GROUP BY h.product_id",
+                    cr.execute("SELECT SUM(h.quantity) FROM stock_history h, stock_move m WHERE h.move_id=m.id AND h.product_id=%s AND h.location_id=%s AND m.date < %s GROUP BY h.product_id",
                                (product.id, each_location.id, this.report_date_start + ' 00:00:00'))
                     res = cr.fetchone()
                     opening_stock_temp = res and res[0] or 0.0
@@ -125,7 +125,7 @@ class daily_stock_report(osv.osv_memory):
                                 FROM stock_history h, stock_move m \
                                 WHERE h.move_id=m.id AND \
                                 h.product_id=%s AND h.location_id=%s AND h.quantity > 0 AND \
-                                m.date_expected >= %s AND m.date_expected <= %s \
+                                m.date >= %s AND m.date <= %s \
                                 GROUP BY h.product_id",
                                (product.id, each_location.id, this.report_date_start + ' 00:00:00', this.report_date + ' 23:59:59'))
                     res = cr.fetchone()
@@ -139,7 +139,7 @@ class daily_stock_report(osv.osv_memory):
                                 FROM stock_history h, stock_move m \
                                 WHERE h.move_id=m.id AND \
                                 h.product_id=%s AND h.location_id=%s AND h.quantity < 0 AND \
-                                m.date_expected >= %s AND m.date_expected <= %s \
+                                m.date >= %s AND m.date <= %s \
                                 GROUP BY h.product_id",
                                (product.id, each_location.id, this.report_date_start + ' 00:00:00', this.report_date + ' 23:59:59'))
                     res = cr.fetchone()
@@ -153,7 +153,7 @@ class daily_stock_report(osv.osv_memory):
                     cr.execute("SELECT SUM(qty) FROM stock_quant WHERE product_id=%s AND location_id=%s GROUP BY product_id",
                         (product.id, each_location.id))
                 else:
-                    cr.execute("SELECT SUM(h.quantity) FROM stock_history h, stock_move m WHERE h.move_id=m.id AND h.product_id=%s AND h.location_id=%s AND m.date_expected <= %s GROUP BY h.product_id",
+                    cr.execute("SELECT SUM(h.quantity) FROM stock_history h, stock_move m WHERE h.move_id=m.id AND h.product_id=%s AND h.location_id=%s AND m.date <= %s GROUP BY h.product_id",
                            (product.id, each_location.id, this.report_date + ' 23:59:59'))
                 res = cr.fetchone()
                 closing_stock_res = res and res[0] or 0.0
