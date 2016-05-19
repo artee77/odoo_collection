@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Quantity, Price & Discount Password Protected",
+    'name': "POS Quantity, Price & Discount button Password Protected",
 
     'summary': """
     """,
