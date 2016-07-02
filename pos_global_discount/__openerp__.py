@@ -30,6 +30,6 @@
     'qweb': ['static/src/xml/pos_custom.xml'],
     'js': ['static/src/js/pos_custom.js'],
 #    'css': ['static/src/css/pos_custom.css'],
-    'price': 30.00,
+    'price': 10.00,
     'currency': 'EUR',
 }
